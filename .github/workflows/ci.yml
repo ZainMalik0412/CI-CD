@@ -1,7 +1,6 @@
-name: CoderCo Combined
+name: CoderCo Combined 
 
-on:
-  push:
+on: [push]
 
 jobs:
   build:
@@ -9,20 +8,20 @@ jobs:
 
     strategy:
       matrix:
-        python-version: ["3.8", "3.9"]
+        python-version: ["3.8", "3.9"] # loop over these versions of code 
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2 # will check out the code to see any errors
 
       - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
+        uses: actions/setup-python@v2 
+        with: # which python version it will use 
+          python-version: ${{ matrix.python-version }} # set up python in virtual machine
 
       - name: Install dependencies
         working-directory: chapter4
-        run: |
+        run: | # means that it must install the dependencies
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -30,6 +29,6 @@ jobs:
         working-directory: chapter4
         run: python -m unittest discover -v
 
-      - name: Notify success
-        if: success()
+      - name: Notify success # condition so it will only run if its successful
+        if: success() 
         run: echo "Tests passed on Python ${{ matrix.python-version }}"
