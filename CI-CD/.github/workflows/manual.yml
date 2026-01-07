@@ -28,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2 
         with: # which python version it will use 
-          python-version: ${{ matrix.python-version }} # set up python in virtual machine
+          python-version: ${{ github.event.inputs.python-version}} # set up python in virtual machine
 
       - name: Run tests
         run: cd chapter4
