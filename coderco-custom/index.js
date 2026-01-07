@@ -1,10 +1,10 @@
-const core = require('@actions/core')
+const core = require('@actions/core');
 
 try {
-  const nameToGreet = core.getInput('who-to-greet')
-  console.log(`Hello, ${nameToGreet}!`)
+  const nameToGreet = core.getInput('who-to-greet');
+  console.log(`Hello, ${nameToGreet}!`);
 
-  core.setOutput('time', new Date().toTimeString())
+  core.setOutput('time', new Date().toTimeString());
 } catch (error) {
-  core.setFailed(error instanceof Error ? error.message : String(error))
+  core.setFailed(error instanceof Error ? error.message : String(error));
 }
